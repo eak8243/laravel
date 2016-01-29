@@ -11,7 +11,19 @@
 |
 */
 
-Route::get('/', function()
+// Route::get('/', function()
+// {
+// 	#return View::make('hello');
+// 	return 'hello world';
+// });
+Route::get('user/{id}/{name}', function($id, $name)
 {
-	return View::make('hello');
-});
+    //
+		return $id.' '.$name;
+})
+->where(array('id' => '[0-9]+', 'name' => '[a-z]+'));
+
+Route::any("/",[
+	"as"=>"site/index",
+	"uses"=>"SiteController@indexAction"
+]);
